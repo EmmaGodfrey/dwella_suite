@@ -2,25 +2,40 @@
   <div class="card">
     <div class="card-header pb-0" v-if="title || $slots.header">
       <slot name="header">
-        <h4>{{ title }}</h4>
-        <span v-if="description">{{ description }}</span>
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h4>{{ title }}</h4>
+            <span v-if="description" class="text-muted">{{ description }}</span>
+          </div>
+          <slot name="header-actions"></slot>
+        </div>
       </slot>
     </div>
     <div class="card-body">
       <div class="table-responsive data-table custom-scrollbar">
-        <!-- Top Actions Section -->
-        <div class="mb-3 row">
-          <!-- Left side actions slot -->
-          <div class="col-md-6 d-flex align-items-center gap-2">
-            <slot name="actions-left"></slot>
+        <!-- Top Controls Section -->
+        <div class="mb-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <!-- Left side: Rows per page -->
+          <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center">
+              <label class="col-form-label me-2 mb-0 text-nowrap">Show</label>
+              <select 
+                class="form-select form-select-sm" 
+                v-model="localItemsPerPage"
+                style="width: auto; min-width: 70px;"
+              >
+                <option v-for="option in rowsPerPageOptions" :key="option" :value="option">
+                  {{ option }}
+                </option>
+              </select>
+              <span class="col-form-label ms-2 mb-0 text-nowrap">entries</span>
+            </div>
           </div>
           
-          <!-- Right side actions + search -->
-          <div class="col-md-6 d-flex justify-content-end align-items-center gap-2">
-            <slot name="actions-right"></slot>
-            
+          <!-- Right side: Search + Filter Toggle -->
+          <div class="d-flex align-items-center gap-2">
             <div class="d-flex align-items-center" v-if="searchable">
-              <label for="table-search" class="col-form-label me-2 mb-0">Search:</label>
+              <label for="table-search" class="col-form-label me-2 mb-0 text-nowrap">Search:</label>
               <input 
                 id="table-search" 
                 type="text" 
@@ -30,15 +45,64 @@
                 style="min-width: 200px;"
               />
             </div>
+            
+            <button 
+              v-if="hasFilters" 
+              class="btn btn-sm btn-outline-secondary"
+              @click="showFilters = !showFilters"
+            >
+              <i class="fa fa-filter me-1"></i>
+              {{ showFilters ? 'Hide' : 'Show' }} Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Filters Section (Collapsible) -->
+        <div v-if="hasFilters && showFilters" class="mb-3 p-3 bg-light rounded">
+          <div class="row g-2">
+            <div 
+              v-for="header in filterableHeaders" 
+              :key="`filter-${header.key}`"
+              class="col-md-3"
+            >
+              <label class="form-label small fw-bold">
+                {{ header.title }}
+              </label>
+              <input 
+                type="text" 
+                class="form-control form-control-sm" 
+                :placeholder="`Filter by ${header.title}`"
+                v-model="columnFilters[header.key]"
+              />
+            </div>
+          </div>
+          <div class="mt-2 d-flex gap-2">
+            <button 
+              class="btn btn-sm btn-primary"
+              @click="applyFilters"
+            >
+              <i class="fa fa-check me-1"></i>Apply Filters
+            </button>
+            <button 
+              class="btn btn-sm btn-secondary"
+              @click="clearFilters"
+            >
+              <i class="fa fa-times me-1"></i>Clear
+            </button>
           </div>
         </div>
 
         <!-- Bootstrap Table -->
         <div class="table-responsive">
-          <table class="table table-striped table-bordered">
+          <table class="table table-striped table-bordered table-hover">
             <thead>
               <tr>
-                <th v-for="header in headers" :key="header.key" :style="header.width ? `width: ${header.width}px` : ''">
+                <th 
+                  v-for="header in headers" 
+                  :key="header.key" 
+                  :style="header.width ? `width: ${header.width}px` : ''"
+                  :class="header.align ? `text-${header.align}` : ''"
+                >
                   {{ header.title }}
                 </th>
               </tr>
@@ -54,18 +118,23 @@
             <tbody v-else-if="!displayItems.length">
               <tr>
                 <td :colspan="headers.length" class="text-center text-muted py-4">
+                  <i class="fa fa-inbox fa-2x mb-2 d-block"></i>
                   No data available
                 </td>
               </tr>
             </tbody>
             <tbody v-else>
               <tr v-for="(item, index) in displayItems" :key="item.id || index">
-                <td v-for="header in headers" :key="header.key">
+                <td 
+                  v-for="header in headers" 
+                  :key="header.key"
+                  :class="header.align ? `text-${header.align}` : ''"
+                >
                   <!-- Check if there's a custom slot for this column -->
                   <slot 
-                    v-if="$slots[`item.${header.key}`]" 
-                    :name="`item.${header.key}`" 
-                    :item="item"
+                    v-if="$slots[`cell-${header.key}`]" 
+                    :name="`cell-${header.key}`" 
+                    :row="{ original: item, index }"
                   />
                   <!-- Otherwise show the value -->
                   <template v-else>
@@ -129,6 +198,7 @@ interface Props {
   searchPlaceholder?: string
   showPaginationInfo?: boolean
   tableClass?: string
+  rowsPerPageOptions?: number[]
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -139,14 +209,31 @@ const props = withDefaults(defineProps<Props>(), {
   searchPlaceholder: 'Search...',
   showPaginationInfo: true,
   tableClass: '',
+  rowsPerPageOptions: () => [5, 10, 25, 50, 100],
 })
 
 const emit = defineEmits<{
   'update:currentPage': [page: number]
   'update:search': [search: string]
+  'update:itemsPerPage': [perPage: number]
+  'update:columnFilters': [filters: Record<string, string>]
 }>()
 
 const localSearch = ref('')
+const localItemsPerPage = ref(props.itemsPerPage)
+const columnFilters = ref<Record<string, string>>({})
+const showFilters = ref(false)
+const searchDebounceTimer = ref<NodeJS.Timeout | null>(null)
+
+// Check if any column has filterable enabled
+const hasFilters = computed(() => {
+  return props.headers.some(h => h.filterable)
+})
+
+// Get only filterable headers
+const filterableHeaders = computed(() => {
+  return props.headers.filter(h => h.filterable)
+})
 
 // Display items for VDataTable
 const displayItems = computed(() => {
@@ -162,16 +249,16 @@ const displayItems = computed(() => {
 const totalPages = computed(() => {
   const total = props.totalItems || props.items.length
   if (total === 0) return 1
-  return Math.ceil(total / props.itemsPerPage)
+  return Math.ceil(total / localItemsPerPage.value)
 })
 
 const paginationFrom = computed(() => {
   if (!props.items.length) return 0
-  return (props.currentPage - 1) * props.itemsPerPage + 1
+  return (props.currentPage - 1) * localItemsPerPage.value + 1
 })
 
 const paginationTo = computed(() => {
-  const to = props.currentPage * props.itemsPerPage
+  const to = props.currentPage * localItemsPerPage.value
   const total = props.totalItems || props.items.length
   return to > total ? total : to
 })
@@ -215,14 +302,53 @@ function goToPage(page: number) {
   }
 }
 
+function applyFilters() {
+  emit('update:columnFilters', { ...columnFilters.value })
+  // Reset to page 1 when applying filters
+  emit('update:currentPage', 1)
+}
+
+function clearFilters() {
+  columnFilters.value = {}
+  emit('update:columnFilters', {})
+  emit('update:currentPage', 1)
+}
+
 watch(localSearch, (value) => {
-  emit('update:search', value)
+  // Clear existing timeout
+  if (searchDebounceTimer.value) {
+    clearTimeout(searchDebounceTimer.value)
+  }
+  
+  // If search is empty, clear immediately without debounce
+  if (value.trim() === '') {
+    emit('update:search', '')
+    return
+  }
+  
+  // Set new timeout for debounced search
+  searchDebounceTimer.value = setTimeout(() => {
+    emit('update:search', value)
+  }, 500) // 500ms delay after user stops typing
+})
+
+watch(localItemsPerPage, (value) => {
+  emit('update:itemsPerPage', value)
+  // Reset to page 1 when changing items per page
+  emit('update:currentPage', 1)
 })
 
 // Helper to get nested values (e.g., "user.name")
 function getNestedValue(obj: any, path: string) {
   return path.split('.').reduce((current, key) => current?.[key], obj)
 }
+
+// Cleanup on unmount
+onBeforeUnmount(() => {
+  if (searchDebounceTimer.value) {
+    clearTimeout(searchDebounceTimer.value)
+  }
+})
 </script>
 
 <style scoped>
@@ -242,39 +368,72 @@ function getNestedValue(obj: any, path: string) {
   cursor: not-allowed;
 }
 
-/* Make VDataTable work with Bootstrap styles */
-:deep(.v-table) {
-  background: transparent !important;
-}
-
-:deep(.v-table > .v-table__wrapper > table) {
-  width: 100%;
-}
-
-:deep(.v-table > .v-table__.wrapper > table > thead > tr > th) {
+/* Filter section styling */
+.bg-light {
   background-color: #f8f9fa !important;
-  font-weight: 600 !important;
-  text-transform: uppercase;
-  font-size: 12px !important;
-  padding: 12px 8px !important;
-  border: 1px solid #dee2e6 !important;
-  color: #212529 !important;
 }
 
-:deep(.v-table > .v-table__wrapper > table > tbody > tr > td) {
-  padding: 12px 8px !important;
-  border: 1px solid #dee2e6 !important;
+.bg-light label {
+  margin-bottom: 0.25rem;
+  color: #495057;
 }
 
-:deep(.v-table > .v-table__wrapper > table > tbody > tr:nth-child(odd)) {
-  background-color: #f8f9fa;
+/* Table enhancements */
+.table-hover tbody tr {
+  transition: background-color 0.2s ease;
 }
 
-:deep(.v-table > .v-table__wrapper > table > tbody > tr:hover) {
+.table-hover tbody tr:hover {
   background-color: #e9ecef !important;
 }
 
-:deep(.v-data-table-footer) {
-  display: none;
+/* Dropdown action button */
+:deep(.dropdown-toggle::after) {
+  vertical-align: middle;
+}
+
+:deep(.dropdown-menu) {
+  min-width: 8rem;
+  z-index: 1050;
+}
+
+:deep(.dropstart .dropdown-menu) {
+  margin-right: 0.125rem;
+}
+
+:deep(.dropstart .btn) {
+  border-radius: 0.25rem;
+}
+
+/* Prevent dropdown from causing horizontal scroll */
+.table-responsive {
+  overflow-x: auto;
+  position: relative;
+}
+
+/* Empty state icon */
+.fa-inbox {
+  opacity: 0.3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  
+  .d-flex.justify-content-between > div {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .bg-light .row {
+    margin: 0;
+  }
+  
+  .bg-light .col-md-3 {
+    margin-bottom: 0.5rem;
+  }
 }
 </style>

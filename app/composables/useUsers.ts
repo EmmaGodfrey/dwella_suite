@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/vue-query'
-import { toast } from 'vue3-toastify'
+import { queryWrap, mutationWrap, useMutationErrors } from '~/utils/queryWrap'
 import type { User, UserCreateInput, UserUpdateInput, UsersListParams } from '../types/user'
 import type { PaginatedResponse } from '../types/api'
 
@@ -11,9 +11,12 @@ export const useUsers = () => {
   const useFetchUsersQuery = (params: Ref<UsersListParams>) => {
     return useQuery({
       queryKey: ['users', params],
-      queryFn: async () => {
-        const response = await usersStore.fetchUsers(params.value)
-        return response.data as PaginatedResponse<User>
+      queryFn: queryWrap(
+        () => usersStore.fetchUsers(params.value),
+        { showToast: false }
+      ),
+      select: (data) => {
+        return data as PaginatedResponse<User>
       },
     })
   }
@@ -21,92 +24,67 @@ export const useUsers = () => {
   // Create user mutation
   const useCreateUserMutation = () => {
     const mutation = useMutation({
-      mutationFn: (userData: UserCreateInput) => usersStore.createUser(userData),
+      mutationFn: mutationWrap<User, UserCreateInput>(
+        (userData) => usersStore.createUser(userData),
+        { 
+          successMessage: 'User created successfully',
+          showToast: true,
+          silentCodes: [422], // Don't show toast for validation errors
+        }
+      ),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['users'] })
       },
     })
 
-    watch(
-      () => mutation.isSuccess.value,
-      (isSuccess) => {
-        if (isSuccess) {
-          toast.success('User created successfully')
-        }
-      }
-    )
+    const { errors, getFieldError } = useMutationErrors(mutation)
 
-    watch(
-      () => mutation.isError.value,
-      (isError) => {
-        if (isError) {
-          toast.error('Failed to create user')
-        }
-      }
-    )
-
-    return mutation
+    return {
+      ...mutation,
+      errors,
+      getFieldError,
+    }
   }
 
   // Update user mutation
   const useUpdateUserMutation = () => {
     const mutation = useMutation({
-      mutationFn: ({ id, userData }: { id: number; userData: UserUpdateInput }) =>
-        usersStore.updateUser(id, userData),
+      mutationFn: mutationWrap<User, { id: number; userData: UserUpdateInput }>(
+        ({ id, userData }) => usersStore.updateUser(id, userData),
+        { 
+          successMessage: 'User updated successfully',
+          showToast: true,
+          silentCodes: [422], // Don't show toast for validation errors
+        }
+      ),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['users'] })
       },
     })
 
-    watch(
-      () => mutation.isSuccess.value,
-      (isSuccess) => {
-        if (isSuccess) {
-          toast.success('User updated successfully')
-        }
-      }
-    )
+    const { errors, getFieldError } = useMutationErrors(mutation)
 
-    watch(
-      () => mutation.isError.value,
-      (isError) => {
-        if (isError) {
-          toast.error('Failed to update user')
-        }
-      }
-    )
-
-    return mutation
+    return {
+      ...mutation,
+      errors,
+      getFieldError,
+    }
   }
 
   // Delete user mutation
   const useDeleteUserMutation = () => {
-    const mutation = useMutation({
-      mutationFn: (id: number) => usersStore.deleteUser(id),
+    return useMutation({
+      mutationFn: mutationWrap<void, number>(
+        (id) => usersStore.deleteUser(id),
+        { 
+          successMessage: 'User deleted successfully',
+          showToast: true, // Show toast for delete success/errors
+        }
+      ),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ['users'] })
       },
     })
-
-    watch(
-      () => mutation.isSuccess.value,
-      (isSuccess) => {
-        if (isSuccess) {
-          toast.success('User deleted successfully')
-        }
-      }
-    )
-
-    watch(
-      () => mutation.isError.value,
-      (isError) => {
-        if (isError) {
-          toast.error('Failed to delete user')
-        }
-      }
-    )
-
-    return mutation
   }
 
   return {

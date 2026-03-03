@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   
   css: ['bootstrap/dist/css/bootstrap.min.css', '@/assets/scss/app.scss'],
 
-  modules: ['@pinia/nuxt', '@nuxt/icon', 'floating-vue/nuxt'],
+  modules: ['@pinia/nuxt', '@nuxt/icon'],
 
   pinia: {
     storesDirs: ['./store/**', './custom-folder/store/**'],
@@ -38,7 +38,7 @@ export default defineNuxtConfig({
   plugins: [
     { src: '~/plugins/plugins.ts', ssr: false, mode: 'client' },
     '~/plugins/api.ts',
-    '~/plugins/vuetify.ts',
+    { src: '~/plugins/vuetify.ts', ssr: false, mode: 'client' },
     '~/plugins/vue-query.ts',
     '~/plugins/toast.ts',
   ],

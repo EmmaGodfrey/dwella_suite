@@ -64,14 +64,32 @@ class ApiService {
 
       if (!response.ok) {
         console.error('[API Error]', response.status, data)
+        
+        // Handle 401 Unauthorized - auto logout
+        if (response.status === 401 && process.client) {
+          console.warn('[API] Unauthorized - clearing auth state')
+          sessionStorage.removeItem('authToken')
+          sessionStorage.removeItem('authUser')
+          sessionStorage.removeItem('authPermissions')
+          
+          // Only redirect if not already on login or logout endpoint
+          if (!endpoint.includes('/login') && !endpoint.includes('/logout')) {
+            navigateTo('/login', { replace: true })
+          }
+        }
+        
         return {
           success: false,
           message: data.message || 'Request failed',
           errors: data.errors,
+          status: response.status,
         }
       }
 
-      return data
+      return {
+        ...data,
+        status: response.status,
+      }
     } catch (error: any) {
       console.error('[API Network Error]', error.message, 'URL:', url)
       return {

@@ -1,6 +1,8 @@
-onMounted(() => {
+// Initialize the filtered list
+export function initializeListFiltered() {
   listFiltered.value = list.value;
-});
+}
+
 interface data {
   placeholder: string;
   minInputLength: number;

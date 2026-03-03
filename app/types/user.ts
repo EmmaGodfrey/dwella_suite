@@ -1,24 +1,28 @@
 export interface User {
   id: number
-  name: string
+  full_name: string
   email: string
-  role: string
+  is_active: number
+  role_ids?: number[]
+  roles?: Array<{ id: number; name: string }>
   created_at?: string
   updated_at?: string
 }
 
 export interface UserCreateInput {
-  name: string
+  full_name: string
   email: string
   password: string
-  role: string
+  is_active: number
+  role_ids: number[]
 }
 
 export interface UserUpdateInput {
-  name?: string
+  full_name?: string
   email?: string
   password?: string
-  role?: string
+  is_active?: number
+  role_ids?: number[]
 }
 
 export interface UsersListParams {

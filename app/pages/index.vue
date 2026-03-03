@@ -6,8 +6,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
-
 definePageMeta({
   name: 'home',
   path: '/',
@@ -19,8 +17,14 @@ definePageMeta({
 useHead({
   title: 'Viho - Premium Nuxt Admin Template',
 });
+
 const router = useRouter();
+const hasRedirected = ref(false);
+
 onMounted(() => {
-  router.replace('/dashboard');
+  if (!hasRedirected.value && router.currentRoute.value.path === '/') {
+    hasRedirected.value = true;
+    router.replace('/dashboard');
+  }
 });
 </script>

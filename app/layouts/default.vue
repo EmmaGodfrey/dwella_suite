@@ -93,5 +93,8 @@ onMounted(() => {
   if (foundLayout) {
     layoutobj.value = JSON.parse(JSON.stringify(foundLayout))[layout.value.settings.layout];
   }
+
+  store.initializeSidebar();
+  store.initializeActiveMenu(route.path);
 });
 </script>

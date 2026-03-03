@@ -268,6 +268,8 @@ export function onInput(event: { items: string[] }) {
 export function onBlur(event: { items: string[] }) {
   listFiltered.value = event.items;
 }
-onMounted(() => {
+
+// Initialize the filtered list
+export function initializeListFiltered() {
   listFiltered.value = list.value;
-});
+}

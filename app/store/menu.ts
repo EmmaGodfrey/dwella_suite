@@ -39,15 +39,26 @@ export const useMenuStore = defineStore('menu', () => {
   let perentName = ref<string | undefined>('');
   let subName = ref<string>('');
   let childName = ref<string | undefined>('');
-  onMounted(() => {
-    window.addEventListener('resize', function () {
+  
+  // Initialize sidebar state based on screen size
+  function initializeSidebar() {
+    if (import.meta.client) {
       if (screen.availWidth < 991) {
         togglesidebar.value = false;
       } else {
         togglesidebar.value = true;
       }
-    });
-  });
+      
+      window.addEventListener('resize', function () {
+        if (screen.availWidth < 991) {
+          togglesidebar.value = false;
+        } else {
+          togglesidebar.value = true;
+        }
+      });
+    }
+  }
+  
   function setPerentActive(title: string) {
     perentName.value = title == perentName.value ? '' : title;
   }
@@ -131,17 +142,19 @@ export const useMenuStore = defineStore('menu', () => {
     }
     item.active = !item.active;
   }
-  onMounted(() => {
+  
+  // Initialize active menu based on current route
+  function initializeActiveMenu(currentPath: string) {
     data.value.filter((menuItem: menuItems) => {
       if (menuItem.path) {
-        if (menuItem.path == useRoute().path) {
+        if (menuItem.path == currentPath) {
           perentName.value = menuItem.title;
         }
       } else {
         if (menuItem.children) {
           menuItem.children?.filter(subItem => {
             if (subItem.path) {
-              if (subItem.path == useRoute().path) {
+              if (subItem.path == currentPath) {
                 perentName.value = menuItem.title;
                 childName.value = subItem.title;
               }
@@ -150,7 +163,7 @@ export const useMenuStore = defineStore('menu', () => {
             if (subItem.children) {
               subItem.children?.filter(childItem => {
                 if (childItem.path) {
-                  if (childItem.path == useRoute().path) {
+                  if (childItem.path == currentPath) {
                     perentName.value = menuItem.title;
                     childName.value = childItem.title;
                   }
@@ -161,7 +174,8 @@ export const useMenuStore = defineStore('menu', () => {
         }
       }
     });
-  });
+  }
+  
   function setActiveRoute(item: MenuItem) {}
   return {
     data,
@@ -188,5 +202,7 @@ export const useMenuStore = defineStore('menu', () => {
     height,
     margin,
     menuWidth,
+    initializeSidebar,
+    initializeActiveMenu,
   };
 });

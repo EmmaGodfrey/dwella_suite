@@ -18,13 +18,33 @@ export const useAuthStore = defineStore('auth', () => {
   const permissions = ref<string[]>([])
   const token = ref<string | null>(null)
 
-  const isAuthenticated = computed(() => !!currentUser.value && !!token.value)
+  const isAuthenticated = computed(() => {
+    // Check if we have both token and user data
+    return !!token.value && !!currentUser.value
+  })
 
   function initAuth() {
     if (process.client) {
       const storedToken = sessionStorage.getItem('authToken')
+      const storedUser = sessionStorage.getItem('authUser')
+      const storedPermissions = sessionStorage.getItem('authPermissions')
+      
       if (storedToken) {
         token.value = storedToken
+      }
+      if (storedUser) {
+        try {
+          currentUser.value = JSON.parse(storedUser)
+        } catch (e) {
+          console.error('Failed to parse stored user:', e)
+        }
+      }
+      if (storedPermissions) {
+        try {
+          permissions.value = JSON.parse(storedPermissions)
+        } catch (e) {
+          console.error('Failed to parse stored permissions:', e)
+        }
       }
     }
   }
@@ -39,6 +59,8 @@ export const useAuthStore = defineStore('auth', () => {
         token.value = response.data.token
         if (process.client) {
           sessionStorage.setItem('authToken', response.data.token)
+          sessionStorage.setItem('authUser', JSON.stringify(response.data.user))
+          sessionStorage.setItem('authPermissions', JSON.stringify(response.data.permissions || []))
         }
       }
     }
@@ -48,16 +70,23 @@ export const useAuthStore = defineStore('auth', () => {
   async function logout() {
     try {
       await $api.post('/auth/logout')
+    } catch (error) {
+      console.error('Logout API error:', error)
     } finally {
+      // Clear in-memory state
       currentUser.value = null
       permissions.value = []
       token.value = null
       
+      // Clear sessionStorage
       if (process.client) {
         sessionStorage.removeItem('authToken')
+        sessionStorage.removeItem('authUser')
+        sessionStorage.removeItem('authPermissions')
       }
       
-      navigateTo('/login')
+      // Force navigation to login
+      await navigateTo('/login', { replace: true, external: false })
     }
   }
 
