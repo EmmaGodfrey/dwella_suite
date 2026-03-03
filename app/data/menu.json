@@ -2,184 +2,20 @@
   "data": [
     {
       "headTitle1": "General",
-      "headTitle2": "Dashboards,Widgets & Layout.",
+      "headTitle2": "Platform Overview",
       "type": "headtitle"
     },
     {
+      "path": "/dashboard/dashboard_default",
       "title": "Dashboard",
       "icon": "material-symbols:home-outline",
-      "type": "sub",
-      "badgeType": "light-primary",
-      "badgeValue": "2",
-      "active": false,
-      "children": [
-        {
-          "path": "/dashboard/dashboard_default",
-          "title": "Default",
-          "type": "link"
-        },
-        {
-          "path": "/dashboard/ecommerce",
-          "title": "E-Commerce",
-          "type": "link"
-        }
-      ]
+      "type": "link",
+      "active": false
     },
     {
-      "title": "Widgets",
-      "icon": "material-symbols:airplay-outline",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/widgets/general",
-          "title": "General",
-          "type": "link"
-        },
-        {
-          "path": "/widgets/chart",
-          "title": "Chart",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "headTitle1": "Applications",
-      "headTitle2": "Ready to use apps",
+      "headTitle1": "User Management",
+      "headTitle2": "Manage platform users",
       "type": "headtitle"
-    },
-    {
-      "title": "Project",
-      "icon": "material-symbols:airplay-outline",
-      "type": "sub",
-      "badgeType": "light-secondary",
-      "badgeValue": "new",
-      "active": false,
-      "children": [
-        {
-          "path": "/project/project_list",
-          "title": "Project List",
-          "type": "link"
-        },
-        {
-          "path": "/project/project_create",
-          "title": "Create new",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "path": "/app/file_manager",
-      "title": "File Manager",
-      "icon": "lucide:git-pull-request",
-      "type": "link",
-      "active": false
-    },
-    {
-      "path": "/app/kanban_board",
-      "title": "Kanban Board",
-      "icon": "ic:baseline-monitor",
-      "type": "link",
-      "badgeType": "light-danger",
-      "badgeValue": "latest",
-      "active": false
-    },
-    {
-      "title": "Ecommerce",
-      "icon": "ri:shopping-bag-3-line",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/ecommerce/product",
-          "title": "Product",
-          "type": "link"
-        },
-        {
-          "path": "/ecommerce/details/1",
-          "title": "Product Details",
-          "type": "link"
-        },
-        {
-          "path": "/ecommerce/add_product",
-          "title": "Add Product",
-          "type": "link"
-        },
-        {
-          "path": "/ecommerce/cart",
-          "title": "Cart",
-          "type": "link"
-        },
-        {
-          "path": "/ecommerce/order_history",
-          "title": "Order Details",
-          "type": "link"
-        },
-        {
-          "path": "/ecommerce/wishlist",
-          "title": "Wishlist",
-          "type": "link"
-        },
-        {
-          "path": "/ecommerce/checkout",
-          "title": "Checkout",
-          "type": "link"
-        },
-        {
-          "path": "/ecommerce/invoice",
-          "title": "Invoice",
-          "type": "link"
-        },
-        {
-          "path": "/ecommerce/payment_details",
-          "title": "Payment Details",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "title": "Email",
-      "icon": "ic:baseline-mail-outline",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/email/email_inbox",
-          "title": "Mail Inbox",
-          "icon": "mail",
-          "type": "link"
-        },
-        {
-          "path": "/email/read",
-          "title": "Read mail",
-          "icon": "mail",
-          "type": "link"
-        },
-        {
-          "path": "/email/email_compose",
-          "title": "Compose",
-          "icon": "mail",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "title": "Chat",
-      "icon": "tabler:message-circle",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/app/chat",
-          "title": "Chat App",
-          "type": "link"
-        },
-        {
-          "path": "/app/video_chat",
-          "title": "Video Chat",
-          "type": "link"
-        }
-      ]
     },
     {
       "title": "Users",
@@ -189,908 +25,391 @@
       "children": [
         {
           "path": "/users",
-          "title": "Users Management",
+          "title": "All Users",
           "type": "link"
         },
         {
-          "path": "/users/profile",
-          "title": "Users Profile",
+          "path": "/users/tenants",
+          "title": "Tenants",
           "type": "link"
         },
         {
-          "path": "/users/edit",
-          "title": "Users Edit",
+          "path": "/users/listers",
+          "title": "Property Listers",
           "type": "link"
         },
         {
-          "path": "/users/cards",
-          "title": "Users Cards",
+          "path": "/users/flagged",
+          "title": "Flagged Users",
           "type": "link"
         }
       ]
     },
     {
-      "path": "/app/bookmark",
-      "title": "Bookmark",
-      "icon": "material-symbols:favorite-outline",
-      "type": "link",
-      "bookmark": true
-    },
-    {
-      "path": "/app/contact",
-      "title": "Contacts",
-      "icon": "ic:outline-format-list-bulleted",
-      "type": "link",
-      "bookmark": true
-    },
-    {
-      "path": "/app/task",
-      "title": "Tasks",
-      "icon": "lucide:check-square",
-      "type": "link"
-    },
-    {
-      "path": "/app/calendar",
-      "title": "Calendar",
-      "icon": "material-symbols:calendar-today-outline",
-      "type": "link",
-      "bookmark": true
-    },
-    {
-      "path": "/pages/social_app",
-      "title": "Social App",
-      "icon": "ri:chrome-line",
-      "type": "link",
-      "bookmark": true
-    },
-    {
-      "path": "/app/todo",
-      "title": "Todo",
-      "icon": "ph:microphone-bold",
-      "type": "link"
-    },
-
-    {
-      "path": "/pages/search",
-      "title": "Search Results",
-      "icon": "ic:outline-search",
-      "type": "link"
-    },
-
-    {
-      "headTitle1": "Forms & Table",
-      "headTitle2": "Ready to use froms & tables ",
+      "headTitle1": "Content Management",
+      "headTitle2": "Manage listings and applications",
       "type": "headtitle"
     },
     {
-      "title": "Forms",
-      "icon": "ph:file-text-bold",
+      "title": "Listings",
+      "icon": "material-symbols:home-outline",
       "type": "sub",
+      "badgeType": "light-warning",
+      "badgeValue": "!",
       "active": false,
       "children": [
         {
-          "title": "Form Controls",
-          "type": "sub",
-          "active": false,
-          "children": [
-            {
-              "path": "/form/validation",
-              "title": "Form Validation",
-              "type": "link"
-            },
-            {
-              "path": "/form/base_inputs",
-              "title": "Base Inputs",
-              "type": "link"
-            },
-            {
-              "path": "/form/checkbox_radio",
-              "title": "Checkbox & Radio",
-              "type": "link"
-            },
-            {
-              "path": "/form/input_groups",
-              "title": "Input Groups",
-              "type": "link"
-            },
-            {
-              "path": "/form/mega_options",
-              "title": "Mega Options",
-              "type": "link"
-            }
-          ]
+          "path": "/listings/all",
+          "title": "All Listings",
+          "type": "link"
         },
         {
-          "title": "Form Widgets",
-          "type": "sub",
-          "active": false,
-          "children": [
-            {
-              "path": "/form/datepicker",
-              "title": "Datepicker",
-              "type": "link"
-            },
-            {
-              "path": "/form/timepicker",
-              "title": "Timepicker",
-              "icon": "file-text",
-              "type": "link"
-            },
-            {
-              "path": "/form/date_time",
-              "title": "Date Timepicker",
-              "icon": "file-text",
-              "type": "link"
-            },
-            {
-              "path": "/form/date_range",
-              "title": "Date Rangepicker",
-              "icon": "file-text",
-              "type": "link"
-            },
-            {
-              "path": "/form/touchspin",
-              "title": "Touchspin",
-              "type": "link"
-            },
-            {
-              "path": "/form/select2",
-              "title": "Select2",
-              "type": "link"
-            },
-            {
-              "path": "/form/switch",
-              "title": "Switch",
-              "type": "link"
-            },
-
-            {
-              "path": "/form/typeahead",
-              "title": "Typeahead",
-              "type": "link"
-            },
-            {
-              "path": "/form/clipboard",
-              "title": "Clipboard",
-              "type": "link"
-            }
-          ]
-        },
-        {
-          "title": "Form Layout",
-          "type": "sub",
-          "active": false,
-          "children": [
-            {
-              "path": "/form/default_form",
-              "title": "Default Forms",
-              "icon": "file-text",
-              "type": "link"
-            },
-            {
-              "path": "/form/form_wizard",
-              "title": "Form Wizard 1",
-              "icon": "file-text",
-              "type": "link"
-            },
-            {
-              "path": "/form/form_wizard_two",
-              "title": "Form Wizard 2",
-              "icon": "file-text",
-              "type": "link"
-            },
-            {
-              "path": "/form/form_wizard_three",
-              "title": "Form Wizard 3",
-              "icon": "file-text",
-              "type": "link"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Tables",
-      "icon": "mdi:server-outline",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "title": "Bootstrap Tables",
-          "path": "/table/basic",
+          "path": "/listings/pending",
+          "title": "Pending Approval",
           "type": "link",
-          "icon": "server",
-          "active": false
+          "badgeType": "light-danger",
+          "badgeValue": "!"
         },
         {
-          "path": "/table/table_components",
-          "title": "Table Components",
-          "icon": "server",
+          "path": "/listings/active",
+          "title": "Active Listings",
           "type": "link"
         },
         {
-          "path": "/table/datatable_basic",
-          "title": "Basic Init",
-          "icon": "server",
+          "path": "/listings/flagged",
+          "title": "Flagged Listings",
+          "type": "link"
+        },
+        {
+          "path": "/listings/archived",
+          "title": "Archived",
+          "type": "link"
+        },
+        {
+          "path": "/listings/statistics",
+          "title": "Listing Statistics",
           "type": "link"
         }
       ]
     },
     {
-      "headTitle1": "Components",
-      "headTitle2": "UI Components & Elements",
-      "type": "headtitle"
-    },
-    {
-      "title": "UI Kits",
-      "icon": "lucide:box",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/uikits/typography",
-          "title": "Typography",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/avatars",
-          "title": "Avatars",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/helper_classes",
-          "title": "Helper Classes",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/grid",
-          "title": "Grid",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/tag_pills",
-          "title": "Tag & Pills",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/progress_bar",
-          "title": "Progressbar",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/modal",
-          "title": "Modal",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/alert",
-          "title": "Alert",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/popover",
-          "title": "Popover",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/tooltip",
-          "title": "Tooltip",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/toasts",
-          "title": "Toasts",
-          "icon": "box",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/loader",
-          "title": "Spinners",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/dropdown",
-          "title": "Dropdown",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/accordion",
-          "title": "Accordian",
-          "type": "link"
-        },
-        {
-          "title": "Tabs",
-          "type": "sub",
-          "active": false,
-          "children": [
-            {
-              "path": "/uikits/tabs/bootstrap_tabs",
-              "title": "Bootstrap Tabs",
-              "icon": "box",
-              "type": "link"
-            },
-            {
-              "path": "/uikits/tabs/line",
-              "title": "Line Tabs",
-              "icon": "box",
-              "type": "link"
-            }
-          ]
-        },
-        {
-          "path": "/uikits/box_shadow",
-          "title": "Shadow",
-          "type": "link"
-        },
-        {
-          "path": "/uikits/lists",
-          "title": "Lists",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "title": "Bonus UI",
-      "icon": "lucide:folder-plus",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/advance/scrollable",
-          "title": "Scrollable",
-          "type": "link"
-        },
-        {
-          "path": "/advance/tree",
-          "title": "Tree View",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/bootstap_notify",
-          "title": "Bootstrap Notify",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/rating",
-          "title": "Rating",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/dropzone",
-          "title": "Dropzone",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/tour",
-          "title": "Tour",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/sweetalert",
-          "title": "SweetAlert",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/animated_modal",
-          "title": "Animated Modal",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/owl_carousel",
-          "title": "Owl Carousel",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/ribbons",
-          "title": "Ribbons",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/pagination",
-          "title": "Pagination",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/breadcrumb",
-          "title": "Breadcrumb",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/range_slider",
-          "title": "Range Slider",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/image_cropper",
-          "title": "Image Cropper",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/sticky",
-          "title": "Sticky",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/basic_card",
-          "title": "Basic Card",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/creative_card",
-          "title": "Creative Card",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/tabbed_card",
-          "title": "Tabbed Card",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/draggable_card",
-          "title": "Draggable Card",
-          "icon": "folder-plus",
-          "type": "link"
-        },
-        {
-          "path": "/advance/timeline",
-          "title": "Timeline",
-          "icon": "folder-plus",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "title": "Animation",
-      "icon": "lucide:cloud-drizzle",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/animation/animate",
-          "title": "Animate",
-          "icon": "cloud-drizzle",
-          "type": "link"
-        },
-        {
-          "path": "/animation/aos_animation",
-          "title": "AOS Animation",
-          "icon": "cloud-drizzle",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "title": "Icons",
-      "icon": "ic:outline-keyboard-command-key",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/icons/flag",
-          "title": "Flag Icon",
-          "type": "link"
-        },
-        {
-          "path": "/icons/fontawesome",
-          "title": "Fontawesome Icon",
-          "type": "link"
-        },
-        {
-          "path": "/icons/ico",
-          "title": "Ico Icon",
-          "type": "link"
-        },
-        {
-          "path": "/icons/themify",
-          "title": "Themify Icon",
-          "type": "link"
-        },
-        {
-          "path": "/icons/nuxt_icon",
-          "title": "Nuxt Icon",
-          "type": "link"
-        },
-        {
-          "path": "/icons/whether",
-          "title": "Whether Icon",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "title": "Buttons",
-      "icon": "ic:outline-cloud-queue",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/buttons/default",
-          "title": "Default Style",
-          "type": "link"
-        },
-        {
-          "path": "/buttons/flat",
-          "title": "Flat Style",
-          "type": "link"
-        },
-        {
-          "path": "/buttons/edge",
-          "title": "Edge Style",
-          "type": "link"
-        },
-        {
-          "path": "/buttons/raised",
-          "title": "Raised Style",
-          "type": "link"
-        },
-        {
-          "path": "/buttons/group",
-          "title": "Button Group",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "title": "Charts",
-      "icon": "lucide:bar-chart",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/chart/google",
-          "title": "Google Chart",
-          "type": "link"
-        },
-        {
-          "path": "/chart/apexChart",
-          "title": "ApexChart",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "headTitle1": "Pages",
-      "headTitle2": "All Neccesory Pages Added",
-      "type": "headtitle"
-    },
-    {
-      "path": "/pages/sample_page",
-      "title": "Sample page",
-      "icon": "ic:outline-insert-drive-file",
-      "type": "link"
-    },
-    {
-      "path": "/pages/internationalization",
-      "title": "Internationalization",
-      "icon": "majesticons:globe-grid",
-      "type": "link"
-    },
-    {
-      "title": "Others",
-      "icon": "lucide:layers",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "title": "Error Page",
-          "icon": "mdi:alert-octagon-outline",
-          "type": "sub",
-          "active": false,
-          "children": [
-            {
-              "path": "/error_page1",
-              "title": "Error Page 1",
-              "type": "link"
-            },
-            {
-              "path": "/error_page2",
-              "title": "Error Page 2",
-              "type": "link"
-            },
-            {
-              "path": "/error_page3",
-              "title": "Error Page 3",
-              "type": "link"
-            },
-            {
-              "path": "/error_page4",
-              "title": "Error Page 4",
-              "type": "link"
-            }
-          ]
-        },
-        {
-          "title": "Authentication",
-          "icon": "octicon:unlock-16",
-          "type": "sub",
-          "active": false,
-          "children": [
-            {
-              "path": "/auth/login",
-              "title": "Login Simple",
-              "type": "link",
-              "active": false
-            },
-            {
-              "path": "/authentication/login/one",
-              "title": "Login with Image",
-              "type": "link"
-            },
-            {
-              "path": "/authentication/login/two",
-              "title": "Login with Image 2",
-              "type": "link"
-            },
-            {
-              "path": "/authentication/login/validate",
-              "title": "Login with validation",
-              "type": "link"
-            },
-            {
-              "path": "/auth/register",
-              "title": "Register Simple",
-              "type": "link"
-            },
-            {
-              "path": "/authentication/register/image",
-              "title": "Register with Image",
-              "type": "link"
-            },
-            {
-              "path": "/authentication/register/image2",
-              "title": "Register with image 2",
-              "type": "link"
-            },
-            {
-              "path": "/authentication/unlock_user",
-              "title": "Unlock User",
-              "type": "link"
-            },
-            {
-              "path": "/authentication/forget_password",
-              "title": "Forget Password",
-              "type": "link"
-            },
-            {
-              "path": "/authentication/reset_password",
-              "title": "Reset Password",
-              "type": "link"
-            }
-          ]
-        },
-        {
-          "title": "Coming Soon",
-          "icon": "bx:briefcase-alt",
-          "type": "sub",
-          "active": false,
-          "children": [
-            {
-              "path": "/comingsoon/comingsoon_simple",
-              "title": "Coming Simple",
-              "type": "link"
-            },
-            {
-              "path": "/comingsoon/comingsoon_image",
-              "title": "Coming with Bg Image",
-              "type": "link"
-            },
-            {
-              "path": "/comingsoon/comingsoon_video",
-              "title": "Coming with Bg video",
-              "type": "link"
-            }
-          ]
-        }
-      ]
-    },
-
-    {
-      "headTitle1": "Miscellaneous",
-      "headTitle2": "Bouns pages & apps",
-      "type": "headtitle"
-    },
-    {
-      "title": "Gallery",
-      "icon": "material-symbols:imagesmode-outline",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/gallery/grid_gallery",
-          "title": "Grid Gallery",
-          "type": "link"
-        },
-        {
-          "path": "/gallery/gallery_desc",
-          "title": "Grid Gallery With Desc",
-          "type": "link"
-        },
-        {
-          "path": "/gallery/gallery_masonary",
-          "title": "Masonary Gallery",
-          "type": "link"
-        },
-        {
-          "path": "/gallery/gallery_masonary_desc",
-          "title": "Masonary Gallery Desc",
-          "type": "link"
-        },
-        {
-          "path": "/gallery/hover_effect",
-          "title": "Hover Effect",
-          "type": "link"
-        }
-      ]
-    },
-
-    {
-      "title": "Maps",
-      "icon": "material-symbols:map-outline",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/maps/vue_google_maps",
-          "title": "Google Maps",
-          "type": "link"
-        },
-        {
-          "path": "/maps/vue_leaflet_maps",
-          "title": "Vue Leaflet",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "title": "editor",
-      "icon": "lucide:box",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/editor/ck_editor",
-          "title": "Ck Editor",
-          "icon": "box",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "title": "Blog",
+      "title": "Applications",
       "icon": "material-symbols:edit-square-outline",
       "type": "sub",
       "active": false,
       "children": [
         {
-          "path": "/blog/details",
-          "title": "Blog Details",
+          "path": "/applications/all",
+          "title": "All Applications",
           "type": "link"
         },
         {
-          "path": "/blog/single",
-          "title": "Blog Single",
+          "path": "/applications/by-status",
+          "title": "By Status",
           "type": "link"
         },
         {
-          "path": "/blog/add_post",
-          "title": "Add Post",
+          "path": "/applications/statistics",
+          "title": "Application Stats",
           "type": "link"
         }
       ]
     },
     {
-      "title": "Job Search",
-      "icon": "uil:user-check",
+      "headTitle1": "Verification & Payments",
+      "headTitle2": "Manage verifications and transactions",
+      "type": "headtitle"
+    },
+    {
+      "title": "Verifications",
+      "icon": "material-symbols:verified-outline",
       "type": "sub",
+      "badgeType": "light-warning",
+      "badgeValue": "!",
       "active": false,
       "children": [
         {
-          "path": "/job/card",
-          "title": "Card View",
-          "icon": "package",
+          "path": "/verifications/pending",
+          "title": "Pending Approvals",
+          "type": "link",
+          "badgeType": "light-danger",
+          "badgeValue": "!"
+        },
+        {
+          "path": "/verifications/approved",
+          "title": "Approved",
           "type": "link"
         },
         {
-          "path": "/job/list",
-          "title": "List View",
-          "icon": "package",
+          "path": "/verifications/rejected",
+          "title": "Rejected",
           "type": "link"
         },
         {
-          "path": "/job/details/1",
-          "title": "Job Details",
-          "icon": "package",
+          "path": "/verifications/revoked",
+          "title": "Revoked",
           "type": "link"
         },
         {
-          "path": "/job/apply/1",
-          "title": "Apply",
-          "icon": "package",
+          "path": "/verifications/plans",
+          "title": "Verification Plans",
+          "type": "link"
+        },
+        {
+          "path": "/verifications/statistics",
+          "title": "Verification Stats",
           "type": "link"
         }
       ]
     },
     {
-      "title": "Learning",
-      "icon": "mi:layers",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/learning/list",
-          "title": "Learning List",
-          "type": "link"
-        },
-        {
-          "path": "/learning/details/1",
-          "title": "Detailed Course",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "path": "/pages/faq",
-      "title": "FAQ",
-      "icon": "mdi:help-circle-outline",
-      "type": "link"
-    },
-    {
-      "title": "Knowledgebase",
-      "icon": "solar:database-linear",
-      "type": "sub",
-      "active": false,
-      "children": [
-        {
-          "path": "/knowledgebase/knowledgebase",
-          "title": "Knowledgebase",
-          "type": "link"
-        },
-        {
-          "path": "/knowledgebase/knowledge_category",
-          "title": "Knowledge Category",
-          "type": "link"
-        },
-        {
-          "path": "/knowledgebase/knowledge_detail",
-          "title": "Knowledge Detail",
-          "type": "link"
-        }
-      ]
-    },
-    {
-      "path": "/pages/support",
-      "title": "Support Ticket",
-      "icon": "material-symbols:headphones-outline",
-      "type": "link"
-    },
-    {
-      "path": "/pages/pricing",
-      "title": "Pricing",
+      "title": "Payments",
       "icon": "lucide:dollar-sign",
-      "type": "link"
+      "type": "sub",
+      "active": false,
+      "children": [
+        {
+          "path": "/payments/all",
+          "title": "All Transactions",
+          "type": "link"
+        },
+        {
+          "path": "/payments/verifications",
+          "title": "Verification Payments",
+          "type": "link"
+        },
+        {
+          "path": "/payments/platform-fees",
+          "title": "Platform Fees",
+          "type": "link"
+        },
+        {
+          "path": "/payments/refunds",
+          "title": "Refunds",
+          "type": "link"
+        },
+        {
+          "path": "/payments/analytics",
+          "title": "Revenue Analytics",
+          "type": "link"
+        }
+      ]
     },
     {
-      "path": "/maintenance",
-      "title": "Maintenance",
+      "headTitle1": "Reference Data",
+      "headTitle2": "Manage platform reference data",
+      "type": "headtitle"
+    },
+    {
+      "title": "Amenities",
+      "icon": "material-symbols:category-outline",
+      "type": "sub",
+      "active": false,
+      "children": [
+        {
+          "path": "/amenities/all",
+          "title": "All Amenities",
+          "type": "link"
+        },
+        {
+          "path": "/amenities/categories",
+          "title": "Categories",
+          "type": "link"
+        },
+        {
+          "path": "/amenities/manage",
+          "title": "Add/Edit/Delete",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "title": "Reference Data",
+      "icon": "material-symbols:database-outline",
+      "type": "sub",
+      "active": false,
+      "children": [
+        {
+          "path": "/reference/property-types",
+          "title": "Property Types",
+          "type": "link"
+        },
+        {
+          "path": "/reference/provinces",
+          "title": "Provinces",
+          "type": "link"
+        },
+        {
+          "path": "/reference/districts",
+          "title": "Districts",
+          "type": "link"
+        },
+        {
+          "path": "/reference/constituencies",
+          "title": "Constituencies",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "headTitle1": "Communication",
+      "headTitle2": "Platform notifications",
+      "type": "headtitle"
+    },
+    {
+      "title": "Notifications",
+      "icon": "material-symbols:notifications-outline",
+      "type": "sub",
+      "active": false,
+      "children": [
+        {
+          "path": "/notifications/send",
+          "title": "Send Notification",
+          "type": "link"
+        },
+        {
+          "path": "/notifications/templates",
+          "title": "Templates",
+          "type": "link"
+        },
+        {
+          "path": "/notifications/bulk",
+          "title": "Bulk Push",
+          "type": "link"
+        },
+        {
+          "path": "/notifications/history",
+          "title": "Notification History",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "headTitle1": "Analytics & Reports",
+      "headTitle2": "Platform insights and reports",
+      "type": "headtitle"
+    },
+    {
+      "title": "Analytics",
+      "icon": "lucide:bar-chart",
+      "type": "sub",
+      "active": false,
+      "children": [
+        {
+          "path": "/analytics/platform-metrics",
+          "title": "Platform Metrics",
+          "type": "link"
+        },
+        {
+          "path": "/analytics/user-activity",
+          "title": "User Activity",
+          "type": "link"
+        },
+        {
+          "path": "/analytics/listing-performance",
+          "title": "Listing Performance",
+          "type": "link"
+        },
+        {
+          "path": "/analytics/application-trends",
+          "title": "Application Trends",
+          "type": "link"
+        },
+        {
+          "path": "/analytics/revenue-reports",
+          "title": "Revenue Reports",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "title": "Reports",
+      "icon": "material-symbols:description-outline",
+      "type": "sub",
+      "active": false,
+      "children": [
+        {
+          "path": "/reports/users",
+          "title": "User Reports",
+          "type": "link"
+        },
+        {
+          "path": "/reports/listings",
+          "title": "Listing Reports",
+          "type": "link"
+        },
+        {
+          "path": "/reports/financial",
+          "title": "Financial Reports",
+          "type": "link"
+        },
+        {
+          "path": "/reports/export",
+          "title": "Export Data",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "headTitle1": "System",
+      "headTitle2": "Platform configuration",
+      "type": "headtitle"
+    },
+    {
+      "title": "Settings",
       "icon": "material-symbols:settings-outline",
-      "type": "link"
+      "type": "sub",
+      "active": false,
+      "children": [
+        {
+          "path": "/settings/platform",
+          "title": "Platform Settings",
+          "type": "link"
+        },
+        {
+          "path": "/settings/payment",
+          "title": "Payment Configuration",
+          "type": "link"
+        },
+        {
+          "path": "/settings/email",
+          "title": "Email Settings",
+          "type": "link"
+        },
+        {
+          "path": "/settings/sms",
+          "title": "SMS Settings",
+          "type": "link"
+        },
+        {
+          "path": "/settings/cache",
+          "title": "Cache Management",
+          "type": "link"
+        }
+      ]
+    },
+    {
+      "title": "Audit Logs",
+      "icon": "material-symbols:history",
+      "type": "sub",
+      "active": false,
+      "children": [
+        {
+          "path": "/audit/admin-actions",
+          "title": "Admin Actions",
+          "type": "link"
+        },
+        {
+          "path": "/audit/user-actions",
+          "title": "User Actions",
+          "type": "link"
+        },
+        {
+          "path": "/audit/system-events",
+          "title": "System Events",
+          "type": "link"
+        }
+      ]
     }
   ]
 }

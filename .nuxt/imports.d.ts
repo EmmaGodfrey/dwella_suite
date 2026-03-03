@@ -36,10 +36,12 @@ export { title, desc, inputClasses, itemClasses, validated, update } from '../ap
 export { options, listFiltered, list, multiple, remote, onInput, onBlur, initializeListFiltered } from '../app/composables/customTemplates';
 export { iconBarStatus, selectIcon, flagIcons, featherIcons, abstract, animal, brand, business, chart, construction, currency, device, directional, eduction, emotion, file, food, kids, law, mathematical, medical, mobileui, multimedia, payment, person, search, social, sport, texteditor, transport, travel, weather, webapplication } from '../app/composables/flagIcon';
 export { errors, optionValues, inputs, formSubmitted, onCustomStyleSubmit } from '../app/composables/taskvalidation';
+export { useAmenities } from '../app/composables/useAmenities';
 export { useBreadcrumbs, BreadcrumbItem } from '../app/composables/useBreadcrumbs';
 export { useUsers } from '../app/composables/useUsers';
 export { normalizeErrors, getFirstError, handleResponse, NormalizedResponse } from '../app/utils/handleResponse';
 export { ApiError, ApiError, useMutationErrors, queryWrap, mutationWrap, QueryWrapOptions, MutationWrapOptions } from '../app/utils/queryWrap';
+export { useAmenitiesStore } from '../app/store/amenities';
 export { useAuthStore } from '../app/store/auth';
 export { useBlogStore } from '../app/store/blog';
 export { useBootstrapStore } from '../app/store/bootstrap';

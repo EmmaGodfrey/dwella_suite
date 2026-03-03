@@ -161,6 +161,8 @@ declare global {
   const unref: typeof import('../../node_modules/vue').unref
   const update: typeof import('../../app/composables/createProject').update
   const updateAppConfig: typeof import('../../node_modules/nuxt/dist/app/config').updateAppConfig
+  const useAmenities: typeof import('../../app/composables/useAmenities').useAmenities
+  const useAmenitiesStore: typeof import('../../app/store/amenities').useAmenitiesStore
   const useAppConfig: typeof import('../../node_modules/nuxt/dist/app/config').useAppConfig
   const useAsyncData: typeof import('../../node_modules/nuxt/dist/app/composables/asyncData').useAsyncData
   const useAttrs: typeof import('../../node_modules/vue').useAttrs
@@ -467,6 +469,8 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('../../node_modules/vue')['unref']>
     readonly update: UnwrapRef<typeof import('../../app/composables/createProject')['update']>
     readonly updateAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/config')['updateAppConfig']>
+    readonly useAmenities: UnwrapRef<typeof import('../../app/composables/useAmenities')['useAmenities']>
+    readonly useAmenitiesStore: UnwrapRef<typeof import('../../app/store/amenities')['useAmenitiesStore']>
     readonly useAppConfig: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/config')['useAppConfig']>
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']>
     readonly useAttrs: UnwrapRef<typeof import('../../node_modules/vue')['useAttrs']>
